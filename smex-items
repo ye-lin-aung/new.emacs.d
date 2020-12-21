@@ -1,13 +1,13 @@
 
 ;; ----- smex-history -----
 (
+ rubocop-check-current-file
+ rubocop-mode
+ rubocop-check-project
+ exec-path-from-shell-initialize
  ivy-rich-mode
  package-install
  buffer-menu
- counsel-M-x
- package-list-packages
- package-refresh-contents
- text-scale-decrease
 )
 
 ;; ----- smex-data -----
@@ -33,4 +33,8 @@
  (buffer-menu . 1)
  (package-install . 1)
  (ivy-rich-mode . 3)
+ (exec-path-from-shell-initialize . 1)
+ (rubocop-check-project . 1)
+ (rubocop-mode . 1)
+ (rubocop-check-current-file . 1)
 )

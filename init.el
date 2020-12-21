@@ -15,7 +15,9 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program. If not, see <http://www.gnu.org/licenses/>.
 ;; ---------------------------------------------------------------------
-
+;; font face
+(set-face-attribute 'default nil :height 120)
+(add-to-list 'load-path "~/.emacs.d/custom/")
 
 (require 'package) ;; Emacs builtin
 
@@ -146,8 +148,7 @@
 ;; Needs "counsel" package to be installed (M-x: package-install)
 (require 'nano-counsel)
 
-;; font face
-(set-face-attribute 'default nil :height 120)
+
 
 ;; Welcome message (optional)
 (let ((inhibit-message t))
@@ -168,7 +169,7 @@
  ;; If there is more than one, they won't work right.
  '(mini-frame-show-parameters '((top . 130) (width . 0.5) (left . 0.5)))
  '(package-selected-packages
-   '(projectile-rails highlight-parentheses flycheck vimish-fold dumb-jump web-mode company-web auto-complete company-box corral mini-frame multiple-cursors zoom persp-projectile counsel-projectile perspective lsp-treemacs lsp-ivy treemacs company-lsp lsp-ui avy ibuffer-vc highlight-indent-guides docker goto-line-preview visual-regexp switch-window ripgrep rg which-key undo-tree ag hydra minimap sublimity try magit ivy-rich counsel use-package))
+   '(exec-path-from-shell projectile-rails highlight-parentheses flycheck vimish-fold dumb-jump web-mode company-web auto-complete company-box corral mini-frame multiple-cursors zoom persp-projectile counsel-projectile perspective lsp-treemacs lsp-ivy treemacs company-lsp lsp-ui avy ibuffer-vc highlight-indent-guides docker goto-line-preview visual-regexp switch-window ripgrep rg which-key undo-tree ag hydra minimap sublimity try magit ivy-rich counsel use-package))
  '(zoom-size 'size-callback))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -245,8 +246,15 @@ By default, this is only a different background color."
 ;; a good yes or no than y or n
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-
-
+;; projectile
+(use-package projectile
+  :defer t
+  :ensure t
+  :config
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-global-mode)
+  ;;  (setq projectile-completion-system 'helm)
+  )
 
 ;; Counsel Swiper
 (use-package hydra
@@ -592,3 +600,23 @@ By default, this is only a different background color."
   :ensure t
   :after ivy
   :config (ivy-rich-mode 1))
+
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-env "GEM_PATH"))
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
+
+(require 'rubocop)
+(add-hook 'ruby-mode-hook #'rubocop-mode)
+
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (setq-local flycheck-command-wrapper-function
+                        (lambda (command) (append '("bundle" "exec") command)))))
+
+(global-auto-revert-mode)
