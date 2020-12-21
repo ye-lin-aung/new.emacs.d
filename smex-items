@@ -1,0 +1,30 @@
+
+;; ----- smex-history -----
+(
+ text-scale-decrease
+ text-scale-increase
+ minimap-mode
+ try
+ sublimity-mode
+ smex
+ ibuffer
+)
+
+;; ----- smex-data -----
+(
+ (load-theme . 1)
+ (nano-splash . 12)
+ (nano-help . 2)
+ (nano-modeline . 1)
+ (nano-what-faces . 1)
+ (nano-splash-fade-out-slow . 2)
+ (eshell . 3)
+ (global-linum-mode . 2)
+ (ibuffer . 1)
+ (smex . 1)
+ (sublimity-mode . 6)
+ (try . 1)
+ (minimap-mode . 1)
+ (text-scale-increase . 1)
+ (text-scale-decrease . 1)
+)
