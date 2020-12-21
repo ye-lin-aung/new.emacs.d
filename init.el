@@ -58,6 +58,9 @@
   :after ivy
   :config (counsel-mode))
 
+
+
+
 (use-package ivy
   :defer 0.1
   :ensure t
@@ -74,7 +77,7 @@
   :ensure t
   :config
   (global-page-break-lines-mode)
-  
+
   )
 
 (use-package ivy-rich
@@ -143,6 +146,9 @@
 ;; Needs "counsel" package to be installed (M-x: package-install)
 (require 'nano-counsel)
 
+;; font face
+(set-face-attribute 'default nil :height 120)
+
 ;; Welcome message (optional)
 (let ((inhibit-message t))
   (message "Welcome to GNU Emacs / N Λ N O edition")
@@ -160,7 +166,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(minimap sublimity try magit ivy-rich counsel use-package)))
+ '(mini-frame-show-parameters '((top . 130) (width . 0.5) (left . 0.5)))
+ '(package-selected-packages
+   '(projectile-rails highlight-parentheses flycheck vimish-fold dumb-jump web-mode company-web auto-complete company-box corral mini-frame multiple-cursors zoom persp-projectile counsel-projectile perspective lsp-treemacs lsp-ivy treemacs company-lsp lsp-ui avy ibuffer-vc highlight-indent-guides docker goto-line-preview visual-regexp switch-window ripgrep rg which-key undo-tree ag hydra minimap sublimity try magit ivy-rich counsel use-package))
+ '(zoom-size 'size-callback))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -185,7 +194,7 @@
   :ensure t
   :config
   (minimap-mode)
-  ;; customize the minimap 
+  ;; customize the minimap
   (custom-set-faces
    '(minimap-active-region-background
      ((((background dark)) (:background "#3B4252"))
@@ -198,3 +207,388 @@ By default, this is only a different background color."
 
 
 
+;; Added backup folders to saves
+(setq backup-directory-alist `(("." . "~/.saves")))
+
+;; Disable that annoying sound that windows beep!
+(setq visible-bell 1)
+(add-hook 'before-save-hook 'my-prog-nuke-trailing-whitespace)
+
+(defun my-prog-nuke-trailing-whitespace ()
+  (when (derived-mode-p 'prog-mode)
+    (delete-trailing-whitespace)))
+
+
+
+(setq ring-bell-function 'ignore)
+
+(require 'ido)
+(ido-mode t)
+
+;; change user name and email of your preferences
+(setq user-full-name "Ye Lin Aung")
+(setq user-mail-address "hello.yelinaung@gmail.com")
+
+;; marking text and respect clipboards
+(delete-selection-mode t)
+(transient-mark-mode t)
+
+;; show empty lines
+(setq-default indicate-empty-lines t)
+(when (not indicate-empty-lines)
+  (toggle-indicate-empty-lines))
+
+;; 2 space tabs -_-
+(setq tab-width 2
+      indent-tabs-mode nil)
+
+;; a good yes or no than y or n
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+
+
+
+;; Counsel Swiper
+(use-package hydra
+  :ensure t
+  )
+
+(use-package ivy
+  :ensure t
+  :config
+  (ivy-mode 1)
+  )
+(use-package swiper
+  :ensure t
+  :load-path "~/.emacs.d/vendor/swiper/"
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t))
+
+
+
+
+(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "<f6>") 'ivy-resume)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> l") 'counsel-find-library)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+(global-set-key (kbd "C-c g") 'counsel-git)
+(global-set-key (kbd "C-c j") 'counsel-git-grep)
+(global-set-key (kbd "C-c k") 'counsel-ag)
+(global-set-key (kbd "C-x l") 'counsel-locate)
+(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+
+(use-package ag
+  :defer t
+  :ensure t
+  )
+
+(use-package undo-tree
+  :ensure t
+  :bind
+  ("C-x u" . undo-tree-visualizer-diff)
+  :config
+  (global-undo-tree-mode)
+  )
+
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode)
+  )
+
+(use-package rg
+  :ensure t)
+
+(use-package ripgrep
+  :demand
+  :ensure t)
+
+(use-package magit
+  :defer t
+  :ensure t
+  )
+
+(use-package switch-window
+  :ensure t
+  :config
+  (global-set-key (kbd "C-x o") 'switch-window)
+  (global-set-key (kbd "C-x 1") 'switch-window-then-maximize)
+  (global-set-key (kbd "C-x 2") 'switch-window-then-split-below)
+  (global-set-key (kbd "C-x 3") 'switch-window-then-split-right)
+  (global-set-key (kbd "C-x 0") 'switch-window-then-delete)
+
+  (global-set-key (kbd "C-x 4 d") 'switch-window-then-dired)
+  (global-set-key (kbd "C-x 4 f") 'switch-window-then-find-file)
+  (global-set-key (kbd "C-x 4 m") 'switch-window-then-compose-mail)
+  (global-set-key (kbd "C-x 4 r") 'switch-window-then-find-file-read-only)
+  (global-set-key (kbd "C-x 4 C-f") 'switch-window-then-find-file)
+  (global-set-key (kbd "C-x 4 C-o") 'switch-window-then-display-buffer)
+
+  (global-set-key (kbd "C-x 4 0") 'switch-window-then-kill-buffer)
+  )
+
+(use-package visual-regexp
+  :ensure t
+  :config
+  (define-key global-map (kbd "C-c i") 'vr/replace)
+  (define-key global-map (kbd "C-c q") 'vr/query-replace)
+  (define-key global-map (kbd "C-c m") 'vr/mc-mark)
+  )
+
+(use-package goto-line-preview
+  :ensure t
+  :defer t
+  :config
+  )
+(global-set-key (kbd "M-g M-g")  'goto-line-preview)
+
+
+
+(use-package docker
+  :ensure t
+  :defer t
+  :bind ("C-c d" . docker))
+
+(use-package highlight-indent-guides
+  :ensure t
+  :defer t
+  :init
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+  :config
+  (setq highlight-indent-guides-method 'character)
+  )
+
+;; multi term
+(defalias 'ff 'find-file)
+(defalias 'ffo 'find-file-other-window)
+
+;; New Eshell
+(global-set-key (kbd "C-c u $")
+                (defun eshell-new()
+                  "Open a new instance of eshell."
+                  (interactive)
+                  (eshell 'N))
+                )
+
+;; ibuffer
+(use-package ibuffer-vc
+  :ensure t)
+
+;; avy
+(use-package avy
+  :ensure t
+  :config
+  (global-set-key (kbd "C-;") 'avy-goto-char))
+
+
+;; lsp mode
+
+(use-package lsp-mode
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  :defer t
+  :init
+  (setq read-process-output-max (* 1024 1024)) ;; 1mb
+  (setq gc-cons-threshold 100000000)
+  (setq lsp-idle-delay 0.500)
+  (setq lsp-keymap-prefix "C-c l")
+
+  ;;  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+  ;;         (prog-mode . lsp)
+  ;; if you want which-key integration
+  ;;         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
+
+;; optionally
+(use-package lsp-ui
+  :defer t
+  :ensure t
+  :commands lsp-ui-mode)
+(use-package company-lsp
+  :defer t
+  :ensure t
+  :commands company-lsp)
+
+;; if you are ivy user
+(use-package treemacs
+  :defer t
+  :ensure t)
+
+
+
+(use-package lsp-ivy
+  :ensure t
+  :commands lsp-ivy-workspace-symbol)
+
+(use-package lsp-treemacs
+  :ensure t
+  :commands lsp-treemacs-errors-list)
+
+(use-package perspective
+  :ensure t
+  :config
+  (persp-mode)
+  )
+
+(use-package counsel-projectile
+  :ensure t
+  :config
+  (counsel-projectile-mode)
+  )
+(use-package persp-projectile
+  :after (perspective)
+  :ensure t
+  :bind
+  )
+(global-set-key (kbd "C-x b") 'persp-ivy-switch-buffer)
+
+
+(use-package zoom
+  :ensure t
+  :config
+  (zoom-mode t)
+  (defun size-callback ()
+    (cond ((> (frame-pixel-width) 1280) '(0.8 . 0.75))
+          (t                            '(0.8 . 0.5))))
+
+  (custom-set-variables
+   '(zoom-size 'size-callback))
+  (global-set-key (kbd "C-x +") 'zoom)
+  )
+
+(use-package multiple-cursors
+  :ensure t
+  )
+(global-set-key (kbd "C-c u m") 'mc/edit-lines)
+
+(use-package mini-frame
+  :ensure t
+  :config (custom-set-variables
+           '(mini-frame-show-parameters
+             '((top . 130)
+               (width . 0.5)
+               (left . 0.5)))))
+;;(mini-frame-mode)
+
+
+(use-package hydra
+  :ensure t
+  :config
+  ;;(defhydra hydra-zoom (global-map "<f2>")
+  ;;  "zoom"
+  ;;  ("g" text-scale-increase "in")
+  ;;  ("l" text-scale-decrease "out"))
+  (defhydra hydra-flycheck (global-map "<f2>")
+    "flycheck"
+    ("n" flycheck-next-error)
+    ("p" flycheck-previous-error))
+  )
+
+(use-package corral
+  :ensure t
+  :config
+  (defhydra hydra-corral (:columns 4)
+    "Corral"
+    ("(" corral-parentheses-backward "Back")
+    (")" corral-parentheses-forward "Forward")
+    ("[" corral-brackets-backward "Back")
+    ("]" corral-brackets-forward "Forward")
+    ("{" corral-braces-backward "Back")
+    ("}" corral-braces-forward "Forward")
+    ("." hydra-repeat "Repeat"))
+  (global-set-key (kbd "C-c n") #'hydra-corral/body))
+
+(use-package company-box
+  :ensure t
+  :hook (company-mode . company-box-mode))
+
+
+
+;; langs
+(use-package company
+  :ensure t
+  :config
+  (add-hook 'after-init-hook 'global-company-mode)
+  )
+(use-package auto-complete
+  :ensure t
+  :config
+  (ac-config-default)
+  )
+
+(use-package company-web
+  :ensure t
+  :config
+  )
+
+;; web mode
+(use-package web-mode
+  :defer t
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+  )
+
+;; dumb-jump
+(use-package dumb-jump
+  :defer t
+  :bind (("M-g o" . dumb-jump-go-other-window)
+         ("M-g j" . dumb-jump-go)
+         ("M-g b" . dumb-jump-back)
+         ("M-g i" . dumb-jump-go-prompt)
+         ("M-g x" . dumb-jump-go-prefer-external)
+         ("M-g z" . dumb-jump-go-prefer-external-other-window))
+  :config (setq dumb-jump-selector 'ivy) ;; (setq dumb-jump-selector 'helm)
+  :ensure)
+
+;; vimimsh fold
+(use-package vimish-fold
+  :ensure t
+  :config
+  (vimish-fold-global-mode 1)
+  (global-set-key (kbd "C-c v f") #'vimish-fold)
+  (global-set-key (kbd "C-c v v") #'vimish-fold-delete))
+
+;; fly check
+(use-package flycheck
+  :defer t
+  :ensure t
+  :init (global-flycheck-mode))
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; highlight parens
+(use-package highlight-parentheses
+  :defer t
+  :ensure t
+  :init
+  (add-hook 'prog-mode-hook 'highlight-parentheses-mode)
+  )
+
+
+;; Rails
+(use-package projectile-rails
+  :ensure t
+  :config
+  (projectile-rails-global-mode)
+  (define-key projectile-rails-mode-map (kbd "C-c r") 'projectile-rails-command-map)
+  )
+
+
+(use-package ivy-rich
+  :ensure t
+  :after ivy
+  :config (ivy-rich-mode 1))

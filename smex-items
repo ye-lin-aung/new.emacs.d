@@ -1,13 +1,13 @@
 
 ;; ----- smex-history -----
 (
+ ivy-rich-mode
+ package-install
+ buffer-menu
+ counsel-M-x
+ package-list-packages
+ package-refresh-contents
  text-scale-decrease
- text-scale-increase
- minimap-mode
- try
- sublimity-mode
- smex
- ibuffer
 )
 
 ;; ----- smex-data -----
@@ -27,4 +27,10 @@
  (minimap-mode . 1)
  (text-scale-increase . 1)
  (text-scale-decrease . 1)
+ (package-refresh-contents . 1)
+ (package-list-packages . 1)
+ (counsel-M-x . 2)
+ (buffer-menu . 1)
+ (package-install . 1)
+ (ivy-rich-mode . 3)
 )
