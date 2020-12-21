@@ -204,6 +204,8 @@
 By default, this is only a different background color."
      :group 'minimap)
    )
+   (setq minimap-window-location 'right)
+
   )
 
 

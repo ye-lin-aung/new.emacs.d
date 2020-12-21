@@ -1,13 +1,13 @@
 
 ;; ----- smex-history -----
 (
+ flush-lines
+ global-auto-revert-mode
+ rubocop-autocorrect-current-file
  rubocop-check-current-file
  rubocop-mode
  rubocop-check-project
  exec-path-from-shell-initialize
- ivy-rich-mode
- package-install
- buffer-menu
 )
 
 ;; ----- smex-data -----
@@ -37,4 +37,7 @@
  (rubocop-check-project . 1)
  (rubocop-mode . 1)
  (rubocop-check-current-file . 1)
+ (rubocop-autocorrect-current-file . 1)
+ (global-auto-revert-mode . 1)
+ (flush-lines . 1)
 )
