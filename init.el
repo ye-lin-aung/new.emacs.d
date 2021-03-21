@@ -169,7 +169,7 @@
  ;; If there is more than one, they won't work right.
  '(mini-frame-show-parameters '((top . 130) (width . 0.5) (left . 0.5)))
  '(package-selected-packages
-   '(exec-path-from-shell projectile-rails highlight-parentheses flycheck vimish-fold dumb-jump web-mode company-web auto-complete company-box corral mini-frame multiple-cursors zoom persp-projectile counsel-projectile perspective lsp-treemacs lsp-ivy treemacs company-lsp lsp-ui avy ibuffer-vc highlight-indent-guides docker goto-line-preview visual-regexp switch-window ripgrep rg which-key undo-tree ag hydra minimap sublimity try magit ivy-rich counsel use-package))
+   '(projectile exec-path-from-shell projectile-rails highlight-parentheses flycheck vimish-fold dumb-jump web-mode company-web auto-complete company-box corral mini-frame multiple-cursors zoom persp-projectile counsel-projectile perspective lsp-treemacs lsp-ivy treemacs company-lsp lsp-ui avy ibuffer-vc highlight-indent-guides docker goto-line-preview visual-regexp switch-window ripgrep rg which-key undo-tree ag hydra minimap sublimity try magit ivy-rich counsel use-package))
  '(zoom-size 'size-callback))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -194,7 +194,7 @@
 (use-package minimap
   :ensure t
   :config
-  (minimap-mode)
+;';  (minimap-mode)
   ;; customize the minimap
   (custom-set-faces
    '(minimap-active-region-background

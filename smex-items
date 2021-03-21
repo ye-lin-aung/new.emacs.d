@@ -1,13 +1,13 @@
 
 ;; ----- smex-history -----
 (
+ package-refresh-contents
  flush-lines
  global-auto-revert-mode
  rubocop-autocorrect-current-file
  rubocop-check-current-file
  rubocop-mode
  rubocop-check-project
- exec-path-from-shell-initialize
 )
 
 ;; ----- smex-data -----
@@ -27,7 +27,7 @@
  (minimap-mode . 1)
  (text-scale-increase . 1)
  (text-scale-decrease . 1)
- (package-refresh-contents . 1)
+ (package-refresh-contents . 2)
  (package-list-packages . 1)
  (counsel-M-x . 2)
  (buffer-menu . 1)
