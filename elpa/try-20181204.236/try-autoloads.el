@@ -21,7 +21,7 @@ to a raw .el file. Packages are stored in `try-tmp-dir' and raw
 
 \(fn &optional URL-OR-PACKAGE)" t nil)
 
-(register-definition-prefixes "try" '("try-"))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "try" '("try-")))
 
 ;;;***
 
