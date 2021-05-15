@@ -169,7 +169,7 @@
  ;; If there is more than one, they won't work right.
  '(mini-frame-show-parameters '((top . 130) (width . 0.5) (left . 0.5)))
  '(package-selected-packages
-   '(rustic rust-mode projectile exec-path-from-shell projectile-rails highlight-parentheses flycheck vimish-fold dumb-jump web-mode company-web auto-complete company-box corral mini-frame multiple-cursors zoom persp-projectile counsel-projectile perspective lsp-treemacs lsp-ivy treemacs company-lsp lsp-ui avy ibuffer-vc highlight-indent-guides docker goto-line-preview visual-regexp switch-window ripgrep rg which-key undo-tree ag hydra minimap sublimity try magit ivy-rich counsel use-package))
+   '(rubocop rustic rust-mode projectile exec-path-from-shell projectile-rails highlight-parentheses flycheck vimish-fold dumb-jump web-mode company-web auto-complete company-box corral mini-frame multiple-cursors zoom persp-projectile counsel-projectile perspective lsp-treemacs lsp-ivy treemacs company-lsp lsp-ui avy ibuffer-vc highlight-indent-guides docker goto-line-preview visual-regexp switch-window ripgrep rg which-key undo-tree ag hydra minimap sublimity try magit ivy-rich counsel use-package))
  '(zoom-size 'size-callback))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -651,9 +651,13 @@ By default, this is only a different background color."
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
+(use-package rubocop
+  :ensure t
+  :after ruby-mode
+  (require 'rubocop)
+  (setq rubocop-autocorrect-on-save t))
 
-(require 'rubocop)
-(add-hook 'ruby-mode-hook #'rubocop-mode)
+(add-hook 'ruby-mode-hook 'rubocop-mode)
 
 (add-hook 'ruby-mode-hook
           (lambda ()
