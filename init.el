@@ -651,11 +651,12 @@ By default, this is only a different background color."
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
+(require 'rubocop)
 (use-package rubocop
   :ensure t
   :after ruby-mode
-  (require 'rubocop)
-  (setq rubocop-autocorrect-on-save t))
+)
+(setq rubocop-autocorrect-on-save t)
 
 (add-hook 'ruby-mode-hook 'rubocop-mode)
 
