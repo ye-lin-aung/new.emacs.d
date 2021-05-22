@@ -1,17 +1,128 @@
-uname -a
-clear
-neofetch
-clear
-uname -a
-uname -a
-clear
-clearuname -a
-clear
-clear
-clear
-neofetch
+rails g scaffold post title:string contact_info:string archived:boolean resolved:boolean sub_category:belongs_to --force
+bin/rails action_text:install
+rails g migrate add_description_to_posts description:string
+rails g migration add_description_to_posts description:string
+rails db:migrate
+RAILS_ENV=test bundle exec db:test:prepare
+RAILS_ENV=test bundle exec rails db:test:prepare
+RAILS_ENV=test bundle exec rails db:drop
+RAILS_ENV=test bundle exec rails db:create
+RAILS_ENV=test bundle exec rails db:migrate
+rails db:migrate
+rails db:drop
+rails db:create
+rails db:migrate
+bundle exec rspec
+bundle exec rails db:prepare 
+bundle exec rails db:test:prepare
+RAILS_ENV=test rails db:migrate
+RAILS_ENV=test rails db:drop
+RAILS_ENV=test rails db:create
+cd db/
 ls
+cd ..
+ls
+cd lib/
+ls
+cd ..
+ls
+cd test/
+ls
+cd dummy/
+ls
+cd db/
+ls
+cd ..
+ls
+cd ..
+ls
+cd ..
+ls
+RAILS_ENV=test rails db:migrate
+RAILS_ENV=test bundle exec rspec 
+RAILS_ENV=test rails db:test:load_schema
+RAILS_ENV=test rails db:load_schema
+bundle exec rails db:test:prepare
+bundle exec rails db:test:prepare
+rails db:drop
+bundle exec rails db:test:prepare
+RAILS_ENV=test rails db:drop
+bundle exec rails db:test:prepare
+bundle exec rails db:migratre
+RAILS_ENV=test rails db:migrate
+RAILS_ENV=test rails db:drop
+RAILS_ENV=test rails db:create
+rm -rf test/dummy/db/schema.rb
+RAILS_ENV=test rails db:migrate
+bundle exec rails db:test:prepare
+bundle exec rspec
+rm -rf spec/routing/
+rm -rf spec/views/
+bundle exec rspec
+rspec spec/models/trade/center/post_spec.rb
+rspec spec/models/trade/center/post_spec.rb
+rspec spec/models/trade/center/post_spec.rb
+rspec spec/models/trade/center/post_spec.rb
+rspec spec/models/trade/center/post_spec.rb
 clear
-up
+bundle exec rspec
+bundle exec rspec
+bundle exec rspec
+bundle exec rspec
+bundle exec rspec
+bundle exec rspec
+2) /posts PATCH /update with valid parameters updates the requested post
+rm -rf spec/helpers/
+bundle exec rspec 
+bundle exec rspec 
+z`
+bundle exec rails db:test:prepare
+bundle exec rails db:create
+bundle exec rails db:migrate
+bundle exec rails db:test:prepare
+bundle exec rspec
+2) /posts PATCH /update with valid parameters updates the requested post
+bundle exec rspec
+bundle exec rspec
+bundle exec rspec
+bundle exec rspec
+bundle exec rspec
+bundle exec rspec
+bundle exec rspec
+bundle exec rspec
+irb
+ls
+bundle exec rspec
+rspec
+rspec
+bundle
+bundle
+git status
+git add .
+bundlke
+rails g actiontext:install
+rails action_text:install
+bundle exec rails action_text:install
+bundle
+bundle
+rspec
+rspec
+rspec
+rspec
+git status
+rails db:seed
+rails routes
+rails g migration add_account_id_to_posts account_id:integer
+rails db:migrate
+RAILS_ENV=test rails db:migrate
+RAILS_ENV=test rails db:migrate
+bundle exec sidekiq
+bundle exec rspec
 clear
-exit
+ls
+bundle exec rails db:test:prepare
+bundle exec rspec
+bundle exec rspec
+bundle exec rspec
+rails console
+ls

@@ -1,20 +1,20 @@
 
 ;; ----- smex-history -----
 (
- customize-themes
- package-install
- package-refresh-contents
- flush-lines
- global-auto-revert-mode
+ flycheck-mode
+ describe-mode
+ flycheck-describe-checker
+ flycheck-info
+ flycheck-disable-checker
+ ruby-mode
  rubocop-autocorrect-current-file
- rubocop-check-current-file
 )
 
 ;; ----- smex-data -----
 (
  (load-theme . 1)
- (nano-splash . 12)
- (nano-help . 2)
+ (nano-splash . 13)
+ (nano-help . 3)
  (nano-modeline . 1)
  (nano-what-faces . 1)
  (nano-splash-fade-out-slow . 2)
@@ -27,18 +27,33 @@
  (minimap-mode . 1)
  (text-scale-increase . 1)
  (text-scale-decrease . 1)
- (package-refresh-contents . 3)
- (package-list-packages . 1)
+ (package-refresh-contents . 4)
+ (package-list-packages . 2)
  (counsel-M-x . 2)
  (buffer-menu . 1)
  (package-install . 3)
  (ivy-rich-mode . 3)
  (exec-path-from-shell-initialize . 1)
- (rubocop-check-project . 1)
- (rubocop-mode . 1)
+ (rubocop-check-project . 2)
+ (rubocop-mode . 5)
  (rubocop-check-current-file . 1)
- (rubocop-autocorrect-current-file . 1)
+ (rubocop-autocorrect-current-file . 2)
  (global-auto-revert-mode . 1)
  (flush-lines . 1)
  (customize-themes . 1)
+ (ruby-mode . 2)
+ (ruby-indent-line . 1)
+ (rubocop-autocorrect-project . 1)
+ (rspec-verify . 2)
+ (rspec-rerun . 2)
+ (kill-buffer . 2)
+ (customize-option . 1)
+ (rspec-verify-method . 1)
+ (shell . 1)
+ (flycheck-version . 1)
+ (flycheck-disable-checker . 6)
+ (flycheck-mode . 5)
+ (flycheck-info . 1)
+ (flycheck-describe-checker . 1)
+ (describe-mode . 1)
 )

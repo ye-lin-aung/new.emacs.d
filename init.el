@@ -16,7 +16,7 @@
 ;; along with this program. If not, see <http://www.gnu.org/licenses/>.
 ;; ---------------------------------------------------------------------
 ;; font face
-(set-face-attribute 'default nil :height 120)
+
 (add-to-list 'load-path "~/.emacs.d/custom/")
 
 (require 'package) ;; Emacs builtin
@@ -39,6 +39,12 @@
 ;; a list of pkgs to programmatically install
 ;; ensure installed via package.el
 (setq my-package-list '(use-package))
+
+;; smex
+(use-package smex
+  :ensure t)
+(require 'smex) ;
+
 
 ;; programmatically install/ensure installed
 ;; pkgs in your personal list
@@ -148,7 +154,10 @@
 ;; Needs "counsel" package to be installed (M-x: package-install)
 (require 'nano-counsel)
 
+(require 'nano-base-colors)
 
+;;(require 'nano-command)
+;;(nano-command)
 
 ;; Welcome message (optional)
 (let ((inhibit-message t))
@@ -167,9 +176,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(eshell-output-filter-functions
+   '(eshell-handle-ansi-color eshell-handle-control-codes eshell-handle-ansi-color eshell-watch-for-password-prompt))
  '(mini-frame-show-parameters '((top . 130) (width . 0.5) (left . 0.5)))
  '(package-selected-packages
-   '(rubocop rustic rust-mode projectile exec-path-from-shell projectile-rails highlight-parentheses flycheck vimish-fold dumb-jump web-mode company-web auto-complete company-box corral mini-frame multiple-cursors zoom persp-projectile counsel-projectile perspective lsp-treemacs lsp-ivy treemacs company-lsp lsp-ui avy ibuffer-vc highlight-indent-guides docker goto-line-preview visual-regexp switch-window ripgrep rg which-key undo-tree ag hydra minimap sublimity try magit ivy-rich counsel use-package))
+   '(rspec-mode rubocop rustic rust-mode projectile exec-path-from-shell projectile-rails highlight-parentheses flycheck vimish-fold dumb-jump web-mode company-web auto-complete company-box corral mini-frame multiple-cursors zoom persp-projectile counsel-projectile perspective lsp-treemacs lsp-ivy treemacs company-lsp lsp-ui avy ibuffer-vc highlight-indent-guides docker goto-line-preview visual-regexp switch-window ripgrep rg which-key undo-tree ag hydra minimap sublimity try magit ivy-rich counsel use-package))
  '(zoom-size 'size-callback))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -651,6 +662,8 @@ By default, this is only a different background color."
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
+(setq-default flycheck-disabled-checkers '(ruby-ruby-lint ruby-rubocop ruby-reek))
+
 (require 'rubocop)
 (use-package rubocop
   :ensure t
@@ -660,9 +673,25 @@ By default, this is only a different background color."
 
 (add-hook 'ruby-mode-hook 'rubocop-mode)
 
-(add-hook 'ruby-mode-hook
-          (lambda ()
-            (setq-local flycheck-command-wrapper-function
-                        (lambda (command) (append '("bundle" "exec") command)))))
+;;(setq flycheck-ruby-rubocop-executable "~/.rbenv/shims/rubocop")
+;;(setq flycheck-ruby-rubylint-executable "~/.rbenv/shims/ruby-lint")
+
+;;(add-hook 'ruby-mode-hook
+;;          (lambda ()
+;;            (setq-local flycheck-command-wrapper-function
+;;                        (lambda (command) (append '("bundle" "exec") command)))))
+
+
+(use-package rspec-mode
+  :ensure t)
+
+(require 'rspec-mode)
 
 (global-auto-revert-mode)
+
+(add-hook 'eshell-mode-hook
+          (defun chunyang-eshell-mode-setup ()
+            (remove-hook 'eshell-output-filter-functions
+                         'eshell-postoutput-scroll-to-bottom)))
+
+(set-face-attribute 'default nil :height 130)
