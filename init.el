@@ -180,7 +180,7 @@
    '(eshell-handle-ansi-color eshell-handle-control-codes eshell-handle-ansi-color eshell-watch-for-password-prompt))
  '(mini-frame-show-parameters '((top . 130) (width . 0.5) (left . 0.5)))
  '(package-selected-packages
-   '(rspec-mode rubocop rustic rust-mode projectile exec-path-from-shell projectile-rails highlight-parentheses flycheck vimish-fold dumb-jump web-mode company-web auto-complete company-box corral mini-frame multiple-cursors zoom persp-projectile counsel-projectile perspective lsp-treemacs lsp-ivy treemacs company-lsp lsp-ui avy ibuffer-vc highlight-indent-guides docker goto-line-preview visual-regexp switch-window ripgrep rg which-key undo-tree ag hydra minimap sublimity try magit ivy-rich counsel use-package))
+   '(company-restclient ob-restclient comapny-restclient rest-client rspec-mode rubocop rustic rust-mode projectile exec-path-from-shell projectile-rails highlight-parentheses flycheck vimish-fold dumb-jump web-mode company-web auto-complete company-box corral mini-frame multiple-cursors zoom persp-projectile counsel-projectile perspective lsp-treemacs lsp-ivy treemacs company-lsp lsp-ui avy ibuffer-vc highlight-indent-guides docker goto-line-preview visual-regexp switch-window ripgrep rg which-key undo-tree ag hydra minimap sublimity try magit ivy-rich counsel use-package))
  '(zoom-size 'size-callback))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -672,6 +672,23 @@ By default, this is only a different background color."
 (setq rubocop-autocorrect-on-save t)
 
 (add-hook 'ruby-mode-hook 'rubocop-mode)
+
+;;rest-client
+(use-package restclient
+  :ensure t
+  )
+
+(use-package company-restclient
+  :ensure t
+  )
+
+(use-package ob-restclient
+  :ensure t)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((restclient . t)))
+(add-to-list 'company-backends 'company-restclient)
 
 ;;(setq flycheck-ruby-rubocop-executable "~/.rbenv/shims/rubocop")
 ;;(setq flycheck-ruby-rubylint-executable "~/.rbenv/shims/ruby-lint")
