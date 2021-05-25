@@ -180,7 +180,7 @@
    '(eshell-handle-ansi-color eshell-handle-control-codes eshell-handle-ansi-color eshell-watch-for-password-prompt))
  '(mini-frame-show-parameters '((top . 130) (width . 0.5) (left . 0.5)))
  '(package-selected-packages
-   '(company-restclient ob-restclient comapny-restclient rest-client rspec-mode rubocop rustic rust-mode projectile exec-path-from-shell projectile-rails highlight-parentheses flycheck vimish-fold dumb-jump web-mode company-web auto-complete company-box corral mini-frame multiple-cursors zoom persp-projectile counsel-projectile perspective lsp-treemacs lsp-ivy treemacs company-lsp lsp-ui avy ibuffer-vc highlight-indent-guides docker goto-line-preview visual-regexp switch-window ripgrep rg which-key undo-tree ag hydra minimap sublimity try magit ivy-rich counsel use-package))
+   '(org-bullets company-restclient ob-restclient comapny-restclient rest-client rspec-mode rubocop rustic rust-mode projectile exec-path-from-shell projectile-rails highlight-parentheses flycheck vimish-fold dumb-jump web-mode company-web auto-complete company-box corral mini-frame multiple-cursors zoom persp-projectile counsel-projectile perspective lsp-treemacs lsp-ivy treemacs company-lsp lsp-ui avy ibuffer-vc highlight-indent-guides docker goto-line-preview visual-regexp switch-window ripgrep rg which-key undo-tree ag hydra minimap sublimity try magit ivy-rich counsel use-package))
  '(zoom-size 'size-callback))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -698,6 +698,10 @@ By default, this is only a different background color."
 ;;            (setq-local flycheck-command-wrapper-function
 ;;                        (lambda (command) (append '("bundle" "exec") command)))))
 
+;; use org-bullets
+(use-package org-bullets
+  :ensure t)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 (use-package rspec-mode
   :ensure t)
