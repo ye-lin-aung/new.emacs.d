@@ -180,7 +180,7 @@
    '(eshell-handle-ansi-color eshell-handle-control-codes eshell-handle-ansi-color eshell-watch-for-password-prompt))
  '(mini-frame-show-parameters '((top . 130) (width . 0.5) (left . 0.5)))
  '(package-selected-packages
-   '(org-bullets company-restclient ob-restclient comapny-restclient rest-client rspec-mode rubocop rustic rust-mode projectile exec-path-from-shell projectile-rails highlight-parentheses flycheck vimish-fold dumb-jump web-mode company-web auto-complete company-box corral mini-frame multiple-cursors zoom persp-projectile counsel-projectile perspective lsp-treemacs lsp-ivy treemacs company-lsp lsp-ui avy ibuffer-vc highlight-indent-guides docker goto-line-preview visual-regexp switch-window ripgrep rg which-key undo-tree ag hydra minimap sublimity try magit ivy-rich counsel use-package))
+   '(symon dimmer quelpa-use-package quelpa restclient org-bullets company-restclient ob-restclient comapny-restclient rest-client rspec-mode rubocop rustic rust-mode projectile exec-path-from-shell projectile-rails highlight-parentheses flycheck vimish-fold dumb-jump web-mode company-web auto-complete company-box corral mini-frame multiple-cursors zoom persp-projectile counsel-projectile perspective lsp-treemacs lsp-ivy treemacs company-lsp lsp-ui avy ibuffer-vc highlight-indent-guides docker goto-line-preview visual-regexp switch-window ripgrep rg which-key undo-tree ag hydra minimap sublimity try magit ivy-rich counsel use-package))
  '(zoom-size 'size-callback))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -205,7 +205,7 @@
 (use-package minimap
   :ensure t
   :config
-;';  (minimap-mode)
+                                        ;';  (minimap-mode)
   ;; customize the minimap
   (custom-set-faces
    '(minimap-active-region-background
@@ -215,7 +215,7 @@
 By default, this is only a different background color."
      :group 'minimap)
    )
-   (setq minimap-window-location 'right)
+  (setq minimap-window-location 'right)
 
   )
 
@@ -668,7 +668,7 @@ By default, this is only a different background color."
 (use-package rubocop
   :ensure t
   :after ruby-mode
-)
+  )
 (setq rubocop-autocorrect-on-save t)
 
 (add-hook 'ruby-mode-hook 'rubocop-mode)
@@ -716,3 +716,44 @@ By default, this is only a different background color."
                          'eshell-postoutput-scroll-to-bottom)))
 
 (set-face-attribute 'default nil :height 130)
+(add-to-list 'default-frame-alist '(drag-internal-border . 1))
+(add-to-list 'default-frame-alist '(internal-border-width . 5))
+(add-to-list 'default-frame-alist '(drag-internal-border . 1))
+(add-to-list 'default-frame-alist '(internal-border-width . 5))
+
+(add-to-list 'load-path "/opt/homebrew/Cellar/mu/1.4.15/share/emacs/site-lisp/mu/mu4e")
+(require 'mu4e)
+
+
+(unless (package-installed-p 'quelpa)
+  (with-temp-buffer
+    (url-insert-file-contents "https://raw.githubusercontent.com/quelpa/quelpa/master/quelpa.el")
+    (eval-buffer)
+    (quelpa-self-upgrade)))
+
+
+(quelpa
+ '(quelpa-use-package
+   :fetcher git
+   :url "https://github.com/quelpa/quelpa-use-package.git"))
+
+(require 'quelpa-use-package)
+
+(setq use-package-ensure-function 'quelpa)
+(use-package dimmer
+  :ensure t
+  :quelpa (dimmer :fetcher github :repo "gonewest818/dimmer"))
+
+(use-package symon
+  :ensure t
+  :quelpa (symon :fetcher github :repo "zk-phi/symon"))
+
+
+(require 'symon)
+(symon-mode)
+(setq symon-sparkline-type 'boxed)
+
+ (require 'dimmer)
+ (dimmer-configure-which-key)
+ (dimmer-configure-helm)
+ (dimmer-mode t)

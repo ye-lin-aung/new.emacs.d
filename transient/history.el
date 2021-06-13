@@ -1,3 +1,5 @@
-((magit-commit nil)
+((docker nil)
+ (docker-volume-help nil)
+ (magit-commit nil)
  (magit-dispatch nil)
  (magit-push nil))

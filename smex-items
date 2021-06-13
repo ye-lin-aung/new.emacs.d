@@ -1,13 +1,13 @@
 
 ;; ----- smex-history -----
 (
- flycheck-mode
- describe-mode
- flycheck-describe-checker
- flycheck-info
- flycheck-disable-checker
- ruby-mode
- rubocop-autocorrect-current-file
+ symon-display
+ symon-mode
+ treemacs
+ treemacs-mode
+ vimish-fold-unfold
+ vimish-fold-toggle
+ vimish-fold-delete
 )
 
 ;; ----- smex-data -----
@@ -56,4 +56,21 @@
  (flycheck-info . 1)
  (flycheck-describe-checker . 1)
  (describe-mode . 1)
+ (tool-bar-mode . 3)
+ (shrink-window . 1)
+ (enlarge-window . 1)
+ (toggle-frame-fullscreen . 3)
+ (projectile-discover-projects-in-directory . 3)
+ (projectile-remove-known-project . 15)
+ (projectile-rails-server . 1)
+ (mu4e . 4)
+ (dimmer-mode . 2)
+ (speedbar . 1)
+ (vimish-fold-toggle . 3)
+ (vimish-fold-unfold . 4)
+ (vimish-fold-delete . 1)
+ (treemacs . 2)
+ (treemacs-mode . 1)
+ (symon-mode . 1)
+ (symon-display . 2)
 )
